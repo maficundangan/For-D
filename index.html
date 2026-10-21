@@ -7,191 +7,191 @@
 <title>for dom 💌</title>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    height: 100dvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(180deg, #8b0000, #c62828);
-    font-family: "Poppins", sans-serif;
-    overflow: hidden;
-  }
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #8b0000, #c62828);
+  overflow: hidden;
+}
 
-  .scene {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.envelope {
+  width: 320px;
+  height: 220px;
+  background: #4169e1;
+  position: absolute;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
+  z-index: 2;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: #4169e1;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 3;
+}
+
+.heart {
+  position: relative;
+  width: 50px;
+  height: 45px;
+  background: #ff80b5;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  transition: opacity 0.8s ease, transform 0.5s ease;
+  z-index: 4;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 45px;
+  background: #ff80b5;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -25px;
+  left: 0;
+}
+
+.heart::after {
+  left: 25px;
+  top: 0;
+}
+
+.letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 90%;
+  max-width: 450px;
+  height: 75vh;
+  height: 75dvh;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+
+  text-align: left;
+  line-height: 1.6;
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+  z-index: 5;
+}
+
+.letter p {
+  margin: 0 0 14px;
+}
+
+.letter p:last-child {
+  margin-bottom: 0;
+}
+
+.open .flap {
+  transform: rotateX(-180deg);
+}
+
+.open .heart {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.show-letter .letter {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
   .envelope {
-    width: 320px;
-    height: 220px;
-    background: #4169e1;
-    position: absolute;
-    border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease;
-  }
-
-  .flap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60%;
-    background: #4169e1;
-    clip-path: polygon(0 0, 50% 100%, 100% 0);
-    transform-origin: top;
-    transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 3;
+    width: 260px;
+    height: 180px;
   }
 
   .heart {
-    position: relative;
-    width: 50px;
-    height: 45px;
-    background-color: #ff80b5;
-    transform: rotate(-45deg);
-    cursor: pointer;
-    transition: opacity 0.8s ease, transform 0.5s ease;
-    z-index: 4;
+    width: 40px;
+    height: 36px;
   }
 
   .heart::before,
   .heart::after {
-    content: "";
-    position: absolute;
-    width: 50px;
-    height: 45px;
-    background-color: #ff80b5;
-    border-radius: 50%;
+    width: 40px;
+    height: 36px;
   }
 
   .heart::before {
-    top: -25px;
-    left: 0;
+    top: -20px;
   }
 
   .heart::after {
-    left: 25px;
-    top: 0;
+    left: 20px;
   }
 
   .letter {
-    box-sizing: border-box;
-    opacity: 0;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-
     width: 90%;
-    max-width: 450px;
-    max-height: 75vh;
-    max-height: 75dvh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-
-    text-align: left;
-    line-height: 1.6;
-    font-size: 13.5px;
-    overflow-wrap: break-word;
-
-    transition: opacity 2s ease, transform 1.8s ease;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) translateY(20px);
-    pointer-events: none;
-    z-index: 5;
+    height: 75vh;
+    height: 75dvh;
+    padding: 18px;
+    font-size: 12.5px;
+    line-height: 1.5;
   }
+}
 
-  .letter p {
-    margin: 0 0 14px;
+@media (max-height: 500px) {
+  .letter {
+    height: 85vh;
+    height: 85dvh;
   }
-
-  .letter p:last-child {
-    margin-bottom: 0;
-  }
-
-  .open .flap {
-    transform: rotateX(-180deg);
-  }
-
-  .open .heart {
-    opacity: 0;
-    transform: scale(0.7);
-    pointer-events: none;
-  }
-
-  .fade-out {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .show-letter .letter {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    pointer-events: auto;
-  }
-
-  @media (max-width: 600px) {
-    .letter {
-      width: 90%;
-      max-height: 75vh;
-      max-height: 75dvh;
-      padding: 18px;
-      font-size: 12.5px;
-      line-height: 1.5;
-    }
-
-    .envelope {
-      width: 260px;
-      height: 180px;
-    }
-
-    .heart {
-      width: 40px;
-      height: 36px;
-    }
-
-    .heart::before,
-    .heart::after {
-      width: 40px;
-      height: 36px;
-    }
-
-    .heart::before {
-      top: -20px;
-    }
-
-    .heart::after {
-      left: 20px;
-    }
-  }
-
-  @media (max-height: 500px) {
-    .letter {
-      max-height: 85vh;
-      max-height: 85dvh;
-    }
-  }
+}
 </style>
 </head>
 
@@ -246,27 +246,29 @@
 </div>
 
 <script>
-  const envelope = document.getElementById("envelope");
-  const scene = document.getElementById("scene");
-  let hasOpened = false;
+const envelope = document.getElementById("envelope");
+const scene = document.getElementById("scene");
+let hasOpened = false;
 
-  function openLetter() {
-    if (hasOpened) return;
-    hasOpened = true;
+function openLetter() {
+  if (hasOpened) return;
+  hasOpened = true;
 
-    envelope.classList.add("open");
+  envelope.classList.add("open");
 
-    setTimeout(() => {
-      envelope.classList.add("fade-out");
-    }, 900);
+  setTimeout(() => {
+    envelope.classList.add("fade-out");
+  }, 900);
 
-    setTimeout(() => {
-      scene.classList.add("show-letter");
-    }, 1600);
-  }
+  setTimeout(() => {
+    scene.classList.add("show-letter");
+  }, 1600);
+}
 
-  envelope.addEventListener("click", openLetter);
+envelope.addEventListener("click", openLetter);
 </script>
 
 </body>
 </html>
+
+
