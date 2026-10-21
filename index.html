@@ -1,17 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>for dom 💌</title>
+
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, #ffe6ef, #ffd6e8);
+    background: linear-gradient(180deg, #8b0000, #c62828);
     font-family: "Poppins", sans-serif;
     overflow: hidden;
   }
@@ -28,10 +35,10 @@
   .envelope {
     width: 320px;
     height: 220px;
-    background: white;
+    background: #4169e1;
     position: absolute;
     border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     perspective: 1000px;
     display: flex;
@@ -46,7 +53,7 @@
     left: 0;
     width: 100%;
     height: 60%;
-    background: white;
+    background: #4169e1;
     clip-path: polygon(0 0, 50% 100%, 100% 0);
     transform-origin: top;
     transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -85,23 +92,42 @@
   }
 
   .letter {
+    box-sizing: border-box;
     opacity: 0;
-    transform: translateY(20px);
     background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-    width: 60%;
-    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+
+    width: 90%;
+    max-width: 450px;
+    max-height: 75vh;
+    max-height: 75dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
     text-align: left;
     line-height: 1.6;
     font-size: 13.5px;
+    overflow-wrap: break-word;
+
     transition: opacity 2s ease, transform 1.8s ease;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) translateY(20px);
     pointer-events: none;
+    z-index: 5;
+  }
+
+  .letter p {
+    margin: 0 0 14px;
+  }
+
+  .letter p:last-child {
+    margin-bottom: 0;
   }
 
   .open .flap {
@@ -111,27 +137,28 @@
   .open .heart {
     opacity: 0;
     transform: scale(0.7);
+    pointer-events: none;
   }
 
   .fade-out {
     opacity: 0;
+    pointer-events: none;
   }
 
   .show-letter .letter {
     opacity: 1;
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translate(-50%, -50%);
     pointer-events: auto;
   }
 
-  /* 💖 responsive fix for phones */
   @media (max-width: 600px) {
     .letter {
-      width: 85%;
-      max-height: 80vh;
-      overflow-y: auto;
+      width: 90%;
+      max-height: 75vh;
+      max-height: 75dvh;
+      padding: 18px;
       font-size: 12.5px;
       line-height: 1.5;
-      padding: 20px;
     }
 
     .envelope {
@@ -149,56 +176,96 @@
       width: 40px;
       height: 36px;
     }
+
+    .heart::before {
+      top: -20px;
+    }
+
+    .heart::after {
+      left: 20px;
+    }
+  }
+
+  @media (max-height: 500px) {
+    .letter {
+      max-height: 85vh;
+      max-height: 85dvh;
+    }
   }
 </style>
 </head>
+
 <body>
 
 <div class="scene" id="scene">
+
   <div class="envelope" id="envelope">
     <div class="flap"></div>
     <div class="heart"></div>
   </div>
 
   <div class="letter" id="letter">
+
     <p>Haiii, Dominique!</p>
-    <p> OKAY this is a continuation of the handwritten letter since I didn't have time to finish it na. I swear I tried to find time, okay! I was just so sleepy na last night kaya I thought about finishing it today pero hindi rin kinaya since I was so tired na SORRYYYY : (
-    <p>Anyways, I’m thankful that our paths crossed and that we got to have what we have now. I know we’re in this MU stage, and we haven’t put a label on whatever this is, but I hope you know that what I feel towards you isn’t something I take lightly. I’m SUPER grateful that I get to know you beyond the things other people see about you. I can also share parts of myself with you that I don’t know how to share with other people due to the fear of being judged or misunderstood.
+
+    <p>OKAY this is a continuation of the handwritten letter since I didn't have time to finish it na. I swear I tried to find time, okay! I was just so sleepy na last night kaya I thought about finishing it today pero hindi rin kinaya since I was so tired na SORRYYYY : (</p>
+
+    <p>Anyways, I’m thankful that our paths crossed and that we got to have what we have now. I know we’re in this MU stage, and we haven’t put a label on whatever this is, but I hope you know that what I feel towards you isn’t something I take lightly. I’m SUPER grateful that I get to know you beyond the things other people see about you. I can also share parts of myself with you that I don’t know how to share with other people due to the fear of being judged or misunderstood.</p>
+
     <p>Medyo OA pero it's true ha!</p>
-    <p>One of the things I appreciate most about you is that you make me feel comfortable enough to be honest. You know! It’s hard to make me honest kasi nahihiya ako, hehe. Pero with you, I don’t feel like I always have to come up with something, cover up my bad day, or pretend that I’m having a good day. I can tell you when I’m tired, upset, when something is bothering me, and when I’m having a hard time figuring myself out. 
-    <p>Yesterday was a reminder that sometimes, the people who help us the most don’t even realize the impact they have on us. You might not see yourself the way I see you, and you don’t know how much your presence and words mean so much to me, as someone who is struggling so much. I hope you know that you made a difference in my life yesterday. PERO I’m not saying this to make you feel responsible for me or to make you feel like you always have to be available whenever I’m having a hard time. I just want you to know how thankful I am for what you did and I’ll never take that for granted.
-    <p> BUT HEY PURO ABOUT SA AKIN ‘TO 
-    <p> I also want you to know that when you’re having a hard time, you can talk to me! Don’t wait until things become unbearable before you tell me that you’re not okay. Wag kang matulad sa akin, bad yun. Kahit paulit-ulit mo pang ikwento or hindi mo alam kung paano i-explain, I’ll do my best to listen and understand. I might not always know the right things to say, but my ears are always open and willing to listen. I hope I can make you feel even a little bit of comfort you’ve given me. I always pray that I can be someone who makes your difficult days a little easier and someone you can be completely honest with without feeling that you have to hide parts of yourself : )
-    <p> I wish I could give you a hug and tell you all of this in person nalang because I feel like this and the handwritten letter wouldn’t be enough. KAYA LANG IM SHY OK, BAKA MAG WALK OUT NALANG AKOOOO. But since nahihiya nga ako, I hope these two helps you understand at least a little bit of it po…. I’m so thankful for you, more than you probably know. I’m really bad at expressing it properly kasi I’m super mahiyain but you mean a lot to me, okay? I’ m thankful for every call, conversation, and every moment that brought us closer. I’m thankful for the person you are and for the fact that I get to know you the way I do. 
-    <p> Thank you for being you! Thank you for being someone I can turn to. Thank you for being someone who listens. I hope I can continue getting to know you and making more memories with you. I hope that whatever happens, we still have each other. Your presence in my life is something ordinary to me : ) 
-    <p> I cannot promise that I’ll never have another difficult day, and that healing and learning to handle things better won’t happen overnight. But, I want to keep trying and choosing to reach out (especially to you!). I appreciate you so so so much more than this html and letter can explain, more than my random thank you messages, and more than the things I manage to say out loud. I’m really glad you’re part of my life and that I get to talk to you everyday.
-    <p> I want you to also know that you can also be honest with me! Either, if something bothers you, tell me. If I do something that hurts you, please let me know. If you’re having a bad day, you can always kwento to me! I want us to be able to communicate with each other and understand each other better kasi, because I don’t just want to be someone who receives your kindness, but someone who gives it back too.
-    <p> I hope that whenever you doubt yourself or wonder if the things you do matter, you remember this and the letter. 
-    <p> Please stay too, okay? When it hits you again, just click the call button. I’ll answer in an instant and stay with you.
-    <p> I’m so so grateful for you, always remember that okay!
-    <p> I love having you in my life : )
-    <p> I love you OKI!
-    <p>With love, <br><b>Mafi :) </b></p>
+
+    <p>One of the things I appreciate most about you is that you make me feel comfortable enough to be honest. You know! It’s hard to make me honest kasi nahihiya ako, hehe. Pero with you, I don’t feel like I always have to come up with something, cover up my bad day, or pretend that I’m having a good day. I can tell you when I’m tired, upset, when something is bothering me, and when I’m having a hard time figuring myself out.</p>
+
+    <p>Yesterday was a reminder that sometimes, the people who help us the most don’t even realize the impact they have on us. You might not see yourself the way I see you, and you don’t know how much your presence and words mean so much to me, as someone who is struggling so much. I hope you know that you made a difference in my life yesterday. PERO I’m not saying this to make you feel responsible for me or to make you feel like you always have to be available whenever I’m having a hard time. I just want you to know how thankful I am for what you did and I’ll never take that for granted.</p>
+
+    <p>BUT HEY PURO ABOUT SA AKIN ‘TO</p>
+
+    <p>I also want you to know that when you’re having a hard time, you can talk to me! Don’t wait until things become unbearable before you tell me that you’re not okay. Wag kang matulad sa akin, bad yun. Kahit paulit-ulit mo pang ikwento or hindi mo alam kung paano i-explain, I’ll do my best to listen and understand. I might not always know the right things to say, but my ears are always open and willing to listen. I hope I can make you feel even a little bit of comfort you’ve given me. I always pray that I can be someone who makes your difficult days a little easier and someone you can be completely honest with without feeling that you have to hide parts of yourself : )</p>
+
+    <p>I wish I could give you a hug and tell you all of this in person nalang because I feel like this and the handwritten letter wouldn’t be enough. KAYA LANG IM SHY OK, BAKA MAG WALK OUT NALANG AKOOOO. But since nahihiya nga ako, I hope these two helps you understand at least a little bit of it po…. I’m so thankful for you, more than you probably know. I’m really bad at expressing it properly kasi I’m super mahiyain but you mean a lot to me, okay? I’ m thankful for every call, conversation, and every moment that brought us closer. I’m thankful for the person you are and for the fact that I get to know you the way I do.</p>
+
+    <p>Thank you for being you! Thank you for being someone I can turn to. Thank you for being someone who listens. I hope I can continue getting to know you and making more memories with you. I hope that whatever happens, we still have each other. Your presence in my life is something ordinary to me : )</p>
+
+    <p>I cannot promise that I’ll never have another difficult day, and that healing and learning to handle things better won’t happen overnight. But, I want to keep trying and choosing to reach out (especially to you!). I appreciate you so so so much more than this html and letter can explain, more than my random thank you messages, and more than the things I manage to say out loud. I’m really glad you’re part of my life and that I get to talk to you everyday.</p>
+
+    <p>I want you to also know that you can also be honest with me! Either, if something bothers you, tell me. If I do something that hurts you, please let me know. If you’re having a bad day, you can always kwento to me! I want us to be able to communicate with each other and understand each other better kasi, because I don’t just want to be someone who receives your kindness, but someone who gives it back too.</p>
+
+    <p>I hope that whenever you doubt yourself or wonder if the things you do matter, you remember this and the letter.</p>
+
+    <p>Please stay too, okay? When it hits you again, just click the call button. I’ll answer in an instant and stay with you.</p>
+
+    <p>I’m so so grateful for you, always remember that okay!</p>
+
+    <p>I love having you in my life : )</p>
+
+    <p>I love you OKI!</p>
+
+    <p>With love,<br><b>Mafi :)</b></p>
+
   </div>
 </div>
 
 <script>
-  const envelope = document.getElementById('envelope');
-  const scene = document.getElementById('scene');
-  const heart = document.querySelector('.heart');
+  const envelope = document.getElementById("envelope");
+  const scene = document.getElementById("scene");
+  let hasOpened = false;
 
   function openLetter() {
-    envelope.classList.add('open');
+    if (hasOpened) return;
+    hasOpened = true;
+
+    envelope.classList.add("open");
+
     setTimeout(() => {
-      envelope.classList.add('fade-out');
+      envelope.classList.add("fade-out");
     }, 900);
+
     setTimeout(() => {
-      scene.classList.add('show-letter');
+      scene.classList.add("show-letter");
     }, 1600);
   }
 
-  envelope.addEventListener('click', openLetter);
-  heart.addEventListener('click', openLetter);
+  envelope.addEventListener("click", openLetter);
 </script>
 
 </body>
